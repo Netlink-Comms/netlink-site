@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&display=swap');
+
+body { background: #000; color: #ccc; font-family: 'Rajdhani', sans-serif; }
+.logo { font-family: 'Orbitron', sans-serif; color: #FF003C; font-size: 2rem; }
+.nav-link { text-transform: uppercase; letter-spacing: .05em; padding: .5rem; transition: color .3s; cursor: pointer; color: #00FFD1; }
+.nav-link.active { color: #F4F4F4; border-bottom: 2px solid #FF003C; }
+.page { display: none; }
+.page.visible { display: block; }
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.headline { font-family: 'Orbitron', sans-serif; font-size: 4rem; text-align: center; }
+.subhead { font-size: 2rem; text-align: center; color: #FF003C; }
+.intro { max-width: 600px; margin: auto; text-align: center; color: #888; }
+.cyber-btn { font-family: 'Rajdhani', sans-serif; padding: .75rem 1.5rem; border-radius: .5rem; backdrop-filter: blur(4px); border: 1px solid #00FFD1; transition: transform .2s; }
+.btn-red:hover { transform: scale(1.05); background: #FF003C; color: #000; }
+.btn-cyan:hover { transform: scale(1.05); background: #00FFD1; color: #000; }
+.dark-bg { background: rgba(0,0,0,.8); padding: 2rem; }
+.section-title { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; }
+.section-title.cyan { color: #00FFD1; }
+.goals-list li { margin: 1rem 0; }
+.roadmap-list { list-style: none; margin-left: 2rem; }
+.phase { font-family: 'Orbitron', sans-serif; width: 2rem; height: 2rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: .5rem; }
+.neon-red { background: #FF003C; color: #000; }
+.neon-cyan { background: #00FFD1; color: #000; }
+.glitch-white { background: #F4F4F4; color: #000; }
+.footer { text-align: center; padding: 1.5rem; font-size: .75rem; color: #555; background: rgba(0,0,0,.7); }
+
+
+// File: config.js
+if (typeof tailwind !== 'undefined') {
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { neonRed: '#FF003C', neonCyan: '#00FFD1', glitchWhite: '#F4F4F4' }
+      }
+    }
+  };
+}
+
+
+// File: script.js
+import './config.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.transform = `translate(${e.clientX}px,${e.clientY}px)`;
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const pages = document.querySelectorAll('.page');
+  function show(id) {
+    pages.forEach(p => p.classList.toggle('visible', p.id === id));
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.classList.toggle('active', link.dataset.page === id);
+    });
+  }
+
+  window.navigate = page => { show(page); history.pushState({ page }, '', `#${page}`); };
+  window.addEventListener('popstate', e => show((e.state && e.state.page) || 'home'));
+  show(window.location.hash.substring(1) || 'home');
+});

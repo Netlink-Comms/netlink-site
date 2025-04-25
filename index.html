@@ -1,158 +1,79 @@
-<!DOCTYPE html>
 <html lang="en" class="bg-black text-gray-200">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NETLINK</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            neonRed: '#FF003C',
-            neonCyan: '#00FFD1',
-            panelBg: 'rgba(5,10,25,0.8)',
-            borderCyan: 'rgba(0,255,209,0.5)',
-            glitchWhite: '#F4F4F4'
-          },
-          fontFamily: {
-            orbitron: ['Orbitron','sans-serif'],
-            rajdhani: ['Rajdhani','sans-serif'],
-            cyber: ['"Titillium Web"','sans-serif']
-          }
-        }
-      }
-    };
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&family=Titillium+Web:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAA...') repeat;
-      opacity: 0.03;
-      pointer-events: none;
-      animation: noise .1s steps(4) infinite;
-    }
-    @keyframes noise {
-      0%,100%{transform:translate(0,0);}25%{transform:translate(-2%,-2%);}50%{transform:translate(2%,2%);}75%{transform:translate(-2%,2%);}
-    }
-    #cursor { width:12px; height:12px; border:2px solid var(--tw-colors-neonCyan); border-radius:50%; position:fixed; pointer-events:none; mix-blend-mode:difference; transition:transform .1s ease; }
-    header { position:fixed; top:0; width:100%; z-index:50; background:rgba(0,0,0,0.7); backdrop-filter:blur(8px); }
-    .nav-link { font-family:rajdhani; text-transform:uppercase; letter-spacing:.05em; padding:.5rem; transition:color .3s; cursor:pointer; }
-    .nav-link.active { color:#fff; border-bottom:2px solid var(--tw-colors-neonRed); }
-    .hidden { display:none; }
-    .reveal { opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease; }
-    .visible { opacity:1; transform:translateY(0); }
-    .panel { background:var(--tw-colors-panelBg); border:1px solid var(--tw-colors-borderCyan); backdrop-filter:blur(6px); padding:1.5rem; border-radius:1rem; }
-  </style>
+  <script src="https://cdn.tailwindcss.com" defer></script>
+  <link rel="stylesheet" href="style.css" />
+  <script src="config.js" defer></script>
 </head>
 <body class="overflow-x-hidden">
   <div id="cursor"></div>
   <header class="py-4">
     <div class="container mx-auto flex justify-between items-center px-6">
-      <a class="text-3xl font-orbitron text-neonRed glitch" data-text="NETLINK" onclick="navigate('home')">NETLINK</a>
+      <a class="logo glitch" data-text="NETLINK" onclick="navigate('home')">NETLINK</a>
       <nav class="flex gap-6">
-        <span class="nav-link neonCyan" data-page="home" onclick="navigate('home')">Home</span>
-        <span class="nav-link neonCyan" data-page="features" onclick="navigate('features')">Systems</span>
-        <span class="nav-link neonCyan" data-page="roadmap" onclick="navigate('roadmap')">Transmission</span>
-        <span class="nav-link neonCyan" data-page="manifesto" onclick="navigate('manifesto')">Manifesto</span>
+        <span class="nav-link" data-page="home" onclick="navigate('home')">Home</span>
+        <span class="nav-link" data-page="goals" onclick="navigate('goals')">Goals</span>
+        <span class="nav-link" data-page="roadmap" onclick="navigate('roadmap')">Roadmap</span>
       </nav>
     </div>
   </header>
   <main class="pt-24">
     <section id="home" class="page reveal visible">
-      <span class="font-cyber text-xs text-borderCyan mb-2 block text-center mt-4">// WELCOME, RUNNER //</span>
-      <h1 class="glitch text-6xl md:text-8xl mb-4 leading-tight max-w-4xl mx-auto text-center" data-text="BREAK THE CHAINS">BREAK THE CHAINS</h1>
-      <h2 class="text-2xl md:text-4xl neonRed mb-6 uppercase tracking-wider text-center">// CONNECT DIFFERENT //</h2>
-      <p class="max-w-lg mb-8 text-gray-400 mx-auto text-center">Netlink strikes back against the data tyrants—zero tracking, end-to-end encryption, pure digital ghost in the machine.</p>
+      <span class="tagline">// RUNNER CHANNEL //</span>
+      <h1 class="headline glitch" data-text="LIGHTWEIGHT CHAT API">LIGHTWEIGHT CHAT API</h1>
+      <h2 class="subhead">// NO BLOAT, JUST SPEED //</h2>
+      <p class="intro">Netlink slashes the excess—bare-metal chat routines, no vault fees, pure reflex. Crafted for netrunners who hack the stack, not fund it.</p>
       <div class="flex gap-6 justify-center">
-        <button class="cyber-btn btn-red" onclick="navigate('features')">// SCAN SYSTEMS</button>
-        <button class="cyber-btn btn-cyan" onclick="navigate('manifesto')">// READ MANIFESTO</button>
+        <button class="cyber-btn btn-red" onclick="navigate('goals')">// VIEW GOALS</button>
+        <button class="cyber-btn btn-cyan" onclick="navigate('roadmap')">// VIEW ROADMAP</button>
       </div>
     </section>
-    <section id="features" class="page hidden reveal">
-      <h2 class="text-4xl font-orbitron text-center text-neonRed mb-12">// CORE SYSTEMS ONLINE //</h2>
-      <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="panel reveal hover:shadow-lg"><h3 class="font-orbitron text-2xl text-neonCyan mb-2">Secure Accounts</h3><p class="text-gray-400">Your handle, your keys. Hardened nodes, zero data bleed—E2E by default.</p></div>
-        <div class="panel reveal hover:shadow-lg"><h3 class="font-orbitron text-2xl text-neonCyan mb-2">Friend Network</h3><p class="text-gray-400">Direct peer links. No algorithms, no backdoors—just trusted channels.</p></div>
-        <div class="panel reveal hover:shadow-lg"><h3 class="font-orbitron text-2xl text-neonCyan mb-2">Encrypted Comms</h3><p class="text-gray-400">Text, media, voice—military-grade crypto tunnels keep you off the grid.</p></div>
-        <div class="panel reveal hover:shadow-lg"><h3 class="font-orbitron text-2xl text-neonCyan mb-2">Group Sync</h3><p class="text-gray-400">Ops coordination with flexible channels, no AI watchdog breathing down your neck.</p></div>
-        <div class="panel reveal hover:shadow-lg"><h3 class="font-orbitron text-2xl text-neonCyan mb-2">VoIP Channels</h3><p class="text-gray-400">Crystal-clear P2P voice—skip the corp taps, go direct.</p></div>
-        <div class="panel reveal hover:shadow-lg"><h3 class="font-orbitron text-2xl text-neonCyan mb-2">Modular Core</h3><p class="text-gray-400">Plug-and-play protocols. Hack, fork, adapt—net evolves with your crew.</p></div>
-      </div>
+
+    <section id="goals" class="page hidden reveal dark-bg">
+      <h2 class="section-title">// PROJECT GOALS //</h2>
+      <ul class="goals-list">
+        <li><strong>Zero Bloat:</strong> Only essential endpoints—no hidden payloads.</li>
+        <li><strong>Free Custom:</strong> Profiles, skins, bots—unlocked, no credits needed.</li>
+        <li><strong>Raw Performance:</strong> Lean websockets, sub-ms pings.</li>
+        <li><strong>Ghost Privacy:</strong> No telemetry, no logs—radical silence.</li>
+        <li><strong>Modular Core:</strong> Hot-swap components, hack at will.</li>
+        <li><strong>Open Crypto:</strong> Community forged, license permissive.</li>
+      </ul>
     </section>
+
     <section id="roadmap" class="page hidden reveal">
-      <h2 class="text-4xl font-orbitron text-center text-neonCyan mb-12">// TRANSMISSION VECTOR //</h2>
-      <div class="container mx-auto relative pl-8 border-l-4 border-neonRed">
-        <div class="mb-12 relative reveal"><div class="absolute -left-6 top-0 w-8 h-8 flex items-center justify-center bg-neonRed text-black font-orbitron rounded-full">1</div><h3 class="text-2xl text-neonRed mb-1 font-bold uppercase">Phase 1: Closed Net Test</h3><p class="font-mono text-sm text-gray-500 mb-2">// STATUS: ACTIVE //</p><p class="text-gray-300">Initial burn-in with trusted nodes. Core functions hardened—ID, comms, groups. Hunting glitches before mass uplink.</p></div>
-        <div class="mb-12 relative reveal"><div class="absolute -left-6 top-0 w-8 h-8 flex items-center justify-center bg-neonCyan text-black font-orbitron rounded-full">2</div><h3 class="text-2xl text-neonCyan mb-1 font-bold uppercase">Phase 2: Limited Beta</h3><p class="font-mono text-sm text-gray-500 mb-2">// STATUS: PENDING //</p><p class="text-gray-300">Invite-only stress tests—UX tweaks, scalability sweeps, VoIP integration trials.</p></div>
-        <div class="relative reveal"><div class="absolute -left-6 top-0 w-8 h-8 flex items-center justify-center bg-glitchWhite text-black font-orbitron rounded-full">3</div><h3 class="text-2xl glitchWhite mb-1 font-bold uppercase">Phase 3: Full Release</h3><p class="font-mono text-sm text-gray-500 mb-2">// STATUS: PLANNED //</p><p class="text-gray-300">Open to the runners. Continuous upgrades based on underground intel: skins, media shares, decentralization.</p></div>
-      </div>
-    </section>
-    <section id="manifesto" class="page hidden reveal bg-black/80 py-20">
-      <h2 class="text-4xl font-orbitron text-center text-neonRed mb-8">// THE SIGNAL //</h2>
-      <div class="container mx-auto prose prose-invert prose-lg">
-        <p>The Net is a digital cage—platform overlords feed on your data. Privacy and freedom are pay-to-play. We break the code.</p>
-        <p><strong class="text-white">Netlink</strong> is forged from underground open-source—no shadow bans, no black boxes, no corp ownership.</p>
-        <p class="text-2xl text-neonRed text-center">// ENOUGH //</p>
-        <ul class="list-none space-y-4">
-          <li><strong>User First:</strong> You own your ghost, always.</li>
-          <li><strong>Radical Transparency:</strong> Open protocols, verifiable security.</li>
-          <li><strong>Data Sovereignty:</strong> Minimal collection, max control.</li>
-          <li><strong>Resilience:</strong> Forkable, modular, built to last.</li>
-          <li><strong>No Masters:</strong> Funded by runners, not VCs.</li>
-        </ul>
-        <p class="text-center text-neonCyan text-xl mt-10 font-orbitron">// JOIN THE SIGNAL //</p>
-      </div>
+      <h2 class="section-title cyan">// TRANSMISSION VECTOR //</h2>
+      <ol class="roadmap-list">
+        <li>
+          <span class="phase neon-red">1</span>
+          <h3>Alpha: Closed Testing</h3>
+          <p class="status">// STATUS: ACTIVE //</p>
+          <p>Core routines live. Founder ops with trusted runners. Tracking stability and purge leaks.</p>
+        </li>
+        <li>
+          <span class="phase neon-cyan">2</span>
+          <h3>Beta: Community Preview</h3>
+          <p class="status">// STATUS: UPCOMING //</p>
+          <p>Open gates to early netizens. Stress the grid, refine docs, seed plugin cores.</p>
+        </li>
+        <li>
+          <span class="phase glitch-white">3</span>
+          <h3>Release Candidate</h3>
+          <p class="status">// STATUS: PLANNED //</p>
+          <p>Lock features, audit performance, community QA blitz.</p>
+        </li>
+        <li>
+          <span class="phase neon-red">4</span>
+          <h3>v1.0: Public Launch</h3>
+          <p class="status">// STATUS: FUTURE //</p>
+          <p>Full open nexus. Docs live, demos online, governance established.</p>
+        </li>
+      </ol>
     </section>
   </main>
-  <footer class="py-6 text-center font-mono text-xs text-gray-500 bg-black/70">
-    // NETLINK TRANSMISSION END // © 2077 // NO RIGHTS RESERVED //
-  </footer>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Cursor follow
-      const cursor = document.getElementById('cursor');
-      document.addEventListener('mousemove', e => cursor.style.transform = `translate(${e.clientX}px,${e.clientY}px)`);
-
-      // Reveal observer
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.15 });
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-      // Navigation
-      const pages = document.querySelectorAll('.page');
-      function show(pageId) {
-        pages.forEach(p => {
-          if (p.id === pageId) {
-            p.classList.remove('hidden'); p.classList.add('visible');
-          } else {
-            p.classList.add('hidden'); p.classList.remove('visible');
-          }
-        });
-        document.querySelectorAll('.nav-link').forEach(link => {
-          link.classList.toggle('active', link.dataset.page === pageId);
-        });
-      }
-      window.navigate = page => {
-        show(page);
-        history.pushState({page}, '', `#${page}`);
-      };
-      window.addEventListener('popstate', e => show((e.state && e.state.page) || window.location.hash.substring(1) || 'home'));
-
-      // Initial
-      show(window.location.hash.substring(1) || 'home');
-    });
-  </script>
+  <footer class="footer">// NETLINK TRANSMISSION END // © 2077 // NO BLOAT //</footer>
+  <script src="script.js"></script>
 </body>
 </html>
