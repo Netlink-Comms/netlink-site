@@ -1,79 +1,80 @@
-<html lang="en" class="bg-black text-gray-200">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NETLINK</title>
-  <script src="https://cdn.tailwindcss.com" defer></script>
+  <title>Netlink</title>
+  <link rel="icon" type="image/svg" href="images/Netlink_icon_bg.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet" />
+
+  <!-- Custom Styles -->
   <link rel="stylesheet" href="style.css" />
-  <script src="config.js" defer></script>
 </head>
-<body class="overflow-x-hidden">
-  <div id="cursor"></div>
-  <header class="py-4">
-    <div class="container mx-auto flex justify-between items-center px-6">
-      <a class="logo glitch" data-text="NETLINK" onclick="navigate('home')">NETLINK</a>
-      <nav class="flex gap-6">
-        <span class="nav-link" data-page="home" onclick="navigate('home')">Home</span>
-        <span class="nav-link" data-page="goals" onclick="navigate('goals')">Goals</span>
-        <span class="nav-link" data-page="roadmap" onclick="navigate('roadmap')">Roadmap</span>
-      </nav>
-    </div>
-  </header>
-  <main class="pt-24">
-    <section id="home" class="page reveal visible">
-      <span class="tagline">// RUNNER CHANNEL //</span>
-      <h1 class="headline glitch" data-text="LIGHTWEIGHT CHAT API">LIGHTWEIGHT CHAT API</h1>
-      <h2 class="subhead">// NO BLOAT, JUST SPEED //</h2>
-      <p class="intro">Netlink slashes the excess—bare-metal chat routines, no vault fees, pure reflex. Crafted for netrunners who hack the stack, not fund it.</p>
-      <div class="flex gap-6 justify-center">
-        <button class="cyber-btn btn-red" onclick="navigate('goals')">// VIEW GOALS</button>
-        <button class="cyber-btn btn-cyan" onclick="navigate('roadmap')">// VIEW ROADMAP</button>
-      </div>
-    </section>
+<body>
+  <canvas id="net-bg"></canvas>
+  <script src="network-bg.js"></script>
 
-    <section id="goals" class="page hidden reveal dark-bg">
-      <h2 class="section-title">// PROJECT GOALS //</h2>
-      <ul class="goals-list">
-        <li><strong>Zero Bloat:</strong> Only essential endpoints—no hidden payloads.</li>
-        <li><strong>Free Custom:</strong> Profiles, skins, bots—unlocked, no credits needed.</li>
-        <li><strong>Raw Performance:</strong> Lean websockets, sub-ms pings.</li>
-        <li><strong>Ghost Privacy:</strong> No telemetry, no logs—radical silence.</li>
-        <li><strong>Modular Core:</strong> Hot-swap components, hack at will.</li>
-        <li><strong>Open Crypto:</strong> Community forged, license permissive.</li>
+  <header>
+    <nav class="container">
+      <img src="images/Netlink.svg" height="25">
+
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="hamburger">&#9776;</label>
+
+      <ul class="nav">
+        <li><a href="#features-screen" class="nav-link">Features</a></li>
+        <li><a href="#roadmap-screen" class="nav-link">Roadmap</a></li>
       </ul>
-    </section>
+    </nav>
+  </header>
 
-    <section id="roadmap" class="page hidden reveal">
-      <h2 class="section-title cyan">// TRANSMISSION VECTOR //</h2>
-      <ol class="roadmap-list">
+  <div class="content">
+    <h1>A Modern Chat Without the Limitation</h1>
+  </div>
+
+  <!-- Features Section -->
+  <div class="content" id="features-screen">
+    <div class="screen-content panel">
+      <h2 class="neon-title">Why Netlink?</h2>
+      <ul class="info-list">
         <li>
-          <span class="phase neon-red">1</span>
-          <h3>Alpha: Closed Testing</h3>
-          <p class="status">// STATUS: ACTIVE //</p>
-          <p>Core routines live. Founder ops with trusted runners. Tracking stability and purge leaks.</p>
+          <strong>Low CPU / Resource Usage</strong>
+          <p>Built for performance without the bloat.</p>
         </li>
         <li>
-          <span class="phase neon-cyan">2</span>
-          <h3>Beta: Community Preview</h3>
-          <p class="status">// STATUS: UPCOMING //</p>
-          <p>Open gates to early netizens. Stress the grid, refine docs, seed plugin cores.</p>
+          <strong>Deep Customization</strong>
+          <p>User profiles, client themes, and more with no paywalls.</p>
         </li>
         <li>
-          <span class="phase glitch-white">3</span>
-          <h3>Release Candidate</h3>
-          <p class="status">// STATUS: PLANNED //</p>
-          <p>Lock features, audit performance, community QA blitz.</p>
+          <strong>High Limits from the Start</strong>
+          <p>1080p streaming, 500MB uploads, and more without subscriptions.</p>
         </li>
-        <li>
-          <span class="phase neon-red">4</span>
-          <h3>v1.0: Public Launch</h3>
-          <p class="status">// STATUS: FUTURE //</p>
-          <p>Full open nexus. Docs live, demos online, governance established.</p>
-        </li>
-      </ol>
-    </section>
-  </main>
-  <footer class="footer">// NETLINK TRANSMISSION END // © 2077 // NO BLOAT //</footer>
-  <script src="script.js"></script>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Roadmap Section -->
+  <div class="content" id="roadmap-screen">
+    <div class="screen-content panel">
+      <h2 class="neon-title">Roadmap</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>End of 2026</h3>
+            <p>Launch a basic version with chat and core features. Access will be invite-only at first to test and refine the backend and app.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Netlink &mdash; <a href="https://github.com/Netlink-Comms">Github</a>
+  </footer>
 </body>
 </html>
